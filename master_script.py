@@ -169,17 +169,16 @@ for i in range(0, len(df)-1):
     os.remove(file_loc)
 
 """
-This is the most time-consuming step of the whole code, taking roughly 20 min to complete w/o multi-threading
+This is the most time-consuming step of the whole code, taking roughly 15 min to complete on my local machine
+(w/o multi-threading)
 
 Once, while running the code on my Mac (OS X), I encountered the following error:
 ...
 BlockingIOError: [Errno 35] Resource temporarily unavailable
 
-... presumably due to a slow/broken internet connection. In this case, the "exac_script.py" script can be run to avoid
-needing to re-run all previous steps.
+... Because of this, I created the "exac_script.py" script to circumvent the need to re-run all previous steps.
 """
 # Parse the dictionary of dataframes containing variant-specific exac data
-# define temp objects/variables
 temp_dict = {}
 exac_df_parse = pd.DataFrame()
 art_id = 0
@@ -190,7 +189,7 @@ for i in exac_dict:
     if 'allele_freq' in exac_dict[i]:
         temp_dict = {art_id: [exac_dict[i]['allele_freq'],exac_dict[i]['rsid'],exac_dict[i]['vep_annotations']]}
     else:
-        temp_dict = {art_id: ["NA","NA","NA"]}
+        temp_dict = {art_id: ["NA","NA","NA"]}  # EXAC data not available for every record
     exac_df_parse = exac_df_parse.append(pd.DataFrame.from_dict(temp_dict, orient='index'))
     art_id += 1
 
@@ -198,3 +197,4 @@ exac_df_parse.columns = ['Allele frequency','rsid','VEP annotation']
 print("Assembling final table...")
 final_df = pd.concat([df,exac_df_parse],axis=1)
 final_df.to_csv(current_wd+"/final_table.txt", sep='\t')
+print("Successfully completed!")
