@@ -7,19 +7,13 @@ For loci (rows) in the VCF file containing multiple possible variants, I did not
 For more info, see the following manuscripts:
 
 Rentzsch P, Witten D, Cooper GM, Shendure J, Kircher M.
-
 CADD: predicting the deleteriousness of variants throughout the human genome.
-
 Nucleic Acids Res. 2018 Oct 29. doi: 10.1093/nar/gky1016.
-
 PubMed PMID: 30371827.
 
 Kircher M, Witten DM, Jain P, O'Roak BJ, Cooper GM, Shendure J.
-
 A general framework for estimating the relative pathogenicity of human genetic variants.
-
 Nat Genet. 2014 Feb 2. doi: 10.1038/ng.2892.
-
 PubMed PMID: 24487276.
 
 Instructions:
